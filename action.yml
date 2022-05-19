@@ -1,0 +1,35 @@
+name: "deploy-action"
+description: "Github Action to deploy with shopfiy krane, kubectl, and gcloud."
+author: "mennowolvers"
+branding:
+  icon: "anchor"
+  color: "blue"
+inputs:
+  credentials_json:
+    description: "Your google service account json"
+    required: true
+  environment:
+    description: "Name of the environment, usually \"production\""
+    default: production
+    required: false
+  command:
+    description: "The krane deployment command"
+    required: true
+  cluster_name:
+    description: "The custom name of the cluster"
+    required: true
+  project:
+    description: "The GCP project name"
+    required: true
+outputs:
+  result:
+    description: "Output returned by your Krane command"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.credentials_json }}
+    - ${{ inputs.environment }}
+    - ${{ inputs.cluster_name }}
+    - ${{ inputs.project }}
+    - ${{ inputs.command }}
