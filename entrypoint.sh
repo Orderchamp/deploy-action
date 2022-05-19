@@ -2,6 +2,8 @@
 
 set -e
 
+echo $1
+
 echo $1 > /service-account.json
 export GOOGLE_APPLICATION_CREDENTIALS="/service-account.json"
 export ENVIRONMENT=$2
