@@ -6,6 +6,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     gem install krane
 
 RUN curl -sSL https://sdk.cloud.google.com | bash
+ENV PATH="/root/google-cloud-sdk/bin/:${PATH}"
 
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
     chmod +x ./kubectl && \
